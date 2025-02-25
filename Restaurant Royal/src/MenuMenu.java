@@ -19,18 +19,18 @@ public class MenuMenu {
             case 1:
                 File folder = new File("data");
                 File[] listOfFiles = folder.listFiles();
-                System.out.println("Here is the list of all the restaurants :");
+                System.out.println("Voici la liste de tous les restaurants :");
                 for (File file : listOfFiles) {
                     if (file.isDirectory()) {
                         System.out.println(file.getName());
                     }
                 }
-    
+
                 System.out.println("Entrer le nom du restaurant dont vous voulez afficher les menus :");
                 String name = scanner.next();
                 File restaurantDirectory = new File("data/" + name + "/menus");
                 File[] listOfFiles2 = restaurantDirectory.listFiles();
-                System.out.println("Voici une liste de tout les menus du restaurant " + name + " :");
+                System.out.println("Voici une liste de tous les menus du restaurant " + name + " :");
                 for (File file : listOfFiles2) {
                     if (file.isFile()) {
                         String fileName = file.getName();
@@ -46,7 +46,7 @@ public class MenuMenu {
                 if (dataDirectory.exists() && dataDirectory.isDirectory()) {
                     String[] restaurantDirectories = dataDirectory.list();
                     if (restaurantDirectories != null && restaurantDirectories.length > 0) {
-                        System.out.println("Liste des restaurants:");
+                        System.out.println("Liste des restaurants :");
                         for (String restaurantName : restaurantDirectories) {
                             System.out.println(restaurantName);
                         }
@@ -62,7 +62,7 @@ public class MenuMenu {
                             System.out.println("Entrer le nom du menu :");
                             String menuName = scanner.next();
                             scanner.nextLine();
-                            System.out.println("Entrer le type du menu  :");
+                            System.out.println("Entrer le type du menu :");
                             String menuType = scanner.next();
                             scanner.nextLine();
                             String creationDate = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
@@ -77,15 +77,14 @@ public class MenuMenu {
                                 FileWriter myWriter = new FileWriter("data/" + restaurantName + "/menus/" + menuName + "/" + menuName + ".txt");
                                 myWriter.write(menuString);
                                 myWriter.close();
-                                System.out.println("Le fichier à correctement été créer");
+                                System.out.println("Le fichier a correctement été créé.");
                             } catch (IOException e) {
-                                System.out.println("Une erreur c'est produite.");
+                                System.out.println("Une erreur s'est produite.");
                                 e.printStackTrace();
                             }
                             System.out.println("Le menu " + menuName + " est ajouté au restaurant : " + restaurantName);
-                            
                         } else {
-                            System.out.println("Le fichier de restaurant n'existe pas.");
+                            System.out.println("Le fichier du restaurant n'existe pas.");
                         }
                     } else {
                         System.out.println("Aucun restaurant trouvé.");
@@ -99,21 +98,21 @@ public class MenuMenu {
                 if (dataDirectory2.exists() && dataDirectory2.isDirectory()) {
                     String[] restaurantDirectories = dataDirectory2.list();
                     if (restaurantDirectories != null && restaurantDirectories.length > 0) {
-                        System.out.println("Liste des restaurant:");
+                        System.out.println("Liste des restaurants :");
                         for (String restaurantName : restaurantDirectories) {
                             System.out.println(restaurantName);
                         }
-    
-                        System.out.println("Entre le nom du restaurant auquel tu veux supprimer un menu:");
+
+                        System.out.println("Entrez le nom du restaurant auquel vous voulez supprimer un menu :");
                         String restaurantName = scanner.next();
                         File restaurantFile2 = new File("data/" + restaurantName + "/" + restaurantName + ".txt");
                         if (restaurantFile2.exists() && restaurantFile2.isFile()) {
-                            System.out.println("Entre le nom du menu que tu veux supprimer:");
+                            System.out.println("Entrez le nom du menu que vous voulez supprimer :");
                             String menuName = scanner.next();
                             File menuFile = new File("data/" + restaurantName + "/" + "menus" + "/" + menuName + ".txt");
                             if (menuFile.exists() && menuFile.isFile()) {
                                 menuFile.delete();
-                                System.out.println("Le menu " + menuName + " à bien été supprimer du restaurant : " + restaurantName);
+                                System.out.println("Le menu " + menuName + " a bien été supprimé du restaurant : " + restaurantName);
                             } else {
                                 System.out.println("Le fichier menu n'existe pas.");
                             }
@@ -132,16 +131,16 @@ public class MenuMenu {
                 if (dataDirectory3.exists() && dataDirectory3.isDirectory()) {
                     String[] restaurantDirectories = dataDirectory3.list();
                     if (restaurantDirectories != null && restaurantDirectories.length > 0) {
-                        System.out.println("Liste des restaurants:");
+                        System.out.println("Liste des restaurants :");
                         for (String restaurantName : restaurantDirectories) {
                             System.out.println(restaurantName);
                         }
-    
-                        System.out.println("Entre le nom du restaurant du menu que tu veux afficher:");
+
+                        System.out.println("Entrez le nom du restaurant du menu que vous voulez afficher :");
                         String restaurantName = scanner.next();
                         File restaurantFile2 = new File("data/" + restaurantName + "/" + restaurantName + ".txt");
                         if (restaurantFile2.exists() && restaurantFile2.isFile()) {
-                            System.out.println("Entrer le nom du menu que vous voulez afficher :");
+                            System.out.println("Entrez le nom du menu que vous voulez afficher :");
                             String menuName = scanner.next();
                             File menuFile = new File("data/" + restaurantName + "/" + "menus" + "/" + menuName + ".txt");
                             if (menuFile.exists() && menuFile.isFile()) {
@@ -153,7 +152,7 @@ public class MenuMenu {
                                     }
                                     myReader.close();
                                 } catch (IOException e) {
-                                    System.out.println("Une erreur est arrivé.");
+                                    System.out.println("Une erreur est survenue.");
                                     e.printStackTrace();
                                 }
                             } else {

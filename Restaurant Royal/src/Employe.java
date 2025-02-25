@@ -16,7 +16,7 @@ public class Employe {
     }
 
     public String EmployeToString(int id, String lastName, String firstName, String role, String employmentDate, int salary) {
-        return "Employe [idEmploye=" + id + ", lastName=" + lastName + ", firstName=" + firstName + ", role=" + role + ", employmentDate=" + employmentDate + ", salary=" + salary + "]";
+        return "Employé [idEmployé=" + id + ", nom=" + lastName + ", prénom=" + firstName + ", rôle=" + role + ", date d'embauche=" + employmentDate + ", salaire=" + salary + "]";
     }
 
     public int getIdEmploye() {
@@ -27,8 +27,6 @@ public class Employe {
         this.id = id;
     }
 
-
-
     public String getLastName() {
         return this.lastName;
     }
@@ -36,8 +34,6 @@ public class Employe {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
-
 
     public String getFirstName() {
         return this.firstName;
@@ -47,8 +43,6 @@ public class Employe {
         this.firstName = firstName;
     }
 
-
-
     public String getRole() {
         return this.role;
     }
@@ -56,8 +50,6 @@ public class Employe {
     public void setRole(String role) {
         this.role = role;
     }
-
-
 
     public String getEmploymentDate() {
         return this.employmentDate;
@@ -67,8 +59,6 @@ public class Employe {
         this.employmentDate = employmentDate;
     }
 
-
-
     public double getSalary() {
         return this.salary;
     }
@@ -76,7 +66,4 @@ public class Employe {
     public void setSalary(double salary) {
         this.salary = salary;
     }
-
-
-    
 }

@@ -16,18 +16,18 @@ public class EmployeMenu {
             case 1:
                 File folder = new File("data");
                 File[] listOfFiles = folder.listFiles();
-                System.out.println("Here is the list of all the restaurants :");
+                System.out.println("Voici la liste de tous les restaurants :");
                 for (File file : listOfFiles) {
                     if (file.isDirectory()) {
                         System.out.println(file.getName());
                     }
                 }
 
-                System.out.println("Enter the name of the restaurant you want to display all the employes : ");
+                System.out.println("Entrez le nom du restaurant dont vous voulez afficher tous les employés : ");
                 String name = scanner.next();
                 File restaurantDirectory = new File("data/" + name + "/employes/");
                 File[] listOfFiles2 = restaurantDirectory.listFiles();
-                System.out.println("Here is the list of all the employes :");
+                System.out.println("Voici la liste de tous les employés :");
                 for (File file : listOfFiles2) {
                     if (file.isFile()) {
                         String fileName = file.getName();
@@ -43,31 +43,31 @@ public class EmployeMenu {
                 if (dataDirectory.exists() && dataDirectory.isDirectory()) {
                     String[] restaurantDirectories = dataDirectory.list();
                     if (restaurantDirectories != null && restaurantDirectories.length > 0) {
-                        System.out.println("List of restaurants:");
+                        System.out.println("Liste des restaurants :");
                         for (String restaurantName : restaurantDirectories) {
                             System.out.println(restaurantName);
                         }
 
-                        System.out.println("Enter the name of the restaurant you want to add an employe to:");
+                        System.out.println("Entrez le nom du restaurant auquel vous voulez ajouter un employé :");
                         String restaurantName = scanner.next();
                         File restaurantFile2 = new File("data/" + restaurantName + "/" + restaurantName + ".txt");
                         if (restaurantFile2.exists() && restaurantFile2.isFile()) {
-                            System.out.println("Enter the id of the employe:");
+                            System.out.println("Entrez l'identifiant de l'employé :");
                             int idEmploye = scanner.nextInt();
                             scanner.nextLine();
-                            System.out.println("Enter the last name of the employe:");
+                            System.out.println("Entrez le nom de famille de l'employé :");
                             String lastName = scanner.next();
                             scanner.nextLine();
-                            System.out.println("Enter the first name of the employe:");
+                            System.out.println("Entrez le prénom de l'employé :");
                             String firstName = scanner.next();
                             scanner.nextLine();
-                            System.out.println("Enter the role of the employe (Caissier, cuisinier, serveur):");
+                            System.out.println("Entrez le rôle de l'employé (Caissier, cuisinier, serveur) :");
                             String role = scanner.next();
                             scanner.nextLine();
-                            System.out.println("Enter the employment date of the employe (D/M/Y format):");
+                            System.out.println("Entrez la date d'embauche de l'employé (format J/M/A) :");
                             String employmentDate = scanner.next();
                             scanner.nextLine();
-                            System.out.println("Enter the salary of the employe:");
+                            System.out.println("Entrez le salaire de l'employé :");
                             int salary = scanner.nextInt();
                             scanner.nextLine();
                             Employe employe = new Employe(idEmploye, lastName, firstName, role, employmentDate, salary);
@@ -76,20 +76,20 @@ public class EmployeMenu {
                                 FileWriter myWriter = new FileWriter("data/" + restaurantName + "/" + "employes" + "/" + lastName + ".txt");
                                 myWriter.write(employeString);
                                 myWriter.close();
-                                System.out.println("Successfully wrote to the file.");
+                                System.out.println("Écriture réussie dans le fichier.");
                             } catch (IOException e) {
-                                System.out.println("An error occurred.");
+                                System.out.println("Une erreur est survenue.");
                                 e.printStackTrace();
                             }
-                            System.out.println("Employe " + firstName + " added successfully to restaurant " + restaurantName);
+                            System.out.println("Employé " + firstName + " ajouté avec succès au restaurant " + restaurantName);
                         } else {
-                            System.out.println("Restaurant file does not exist.");
+                            System.out.println("Le fichier du restaurant n'existe pas.");
                         }
                     } else {
-                        System.out.println("No restaurants found.");
+                        System.out.println("Aucun restaurant trouvé.");
                     }
                 } else {
-                    System.out.println("Data directory does not exist.");
+                    System.out.println("Le répertoire de données n'existe pas.");
                 }
                 break;
             case 3:
@@ -97,32 +97,32 @@ public class EmployeMenu {
                 if (dataDirectory2.exists() && dataDirectory2.isDirectory()) {
                     String[] restaurantDirectories = dataDirectory2.list();
                     if (restaurantDirectories != null && restaurantDirectories.length > 0) {
-                        System.out.println("List of restaurants:");
+                        System.out.println("Liste des restaurants :");
                         for (String restaurantName : restaurantDirectories) {
                             System.out.println(restaurantName);
                         }
 
-                        System.out.println("Enter the name of the restaurant you want to remove an employe from:");
+                        System.out.println("Entrez le nom du restaurant dont vous voulez supprimer un employé :");
                         String restaurantName = scanner.next();
                         File restaurantFile2 = new File("data/" + restaurantName + "/" + restaurantName + ".txt");
                         if (restaurantFile2.exists() && restaurantFile2.isFile()) {
-                            System.out.println("Enter the last name of the employe you want to remove:");
+                            System.out.println("Entrez le nom de famille de l'employé que vous voulez supprimer :");
                             String lastName = scanner.next();
                             File employeFile = new File("data/" + restaurantName + "/" + lastName + ".txt");
                             if (employeFile.exists() && employeFile.isFile()) {
                                 employeFile.delete();
-                                System.out.println("Employe " + lastName + " removed successfully from restaurant " + restaurantName);
+                                System.out.println("Employé " + lastName + " supprimé avec succès du restaurant " + restaurantName);
                             } else {
-                                System.out.println("Employe file does not exist.");
+                                System.out.println("Le fichier de l'employé n'existe pas.");
                             }
                         } else {
-                            System.out.println("Restaurant file does not exist.");
+                            System.out.println("Le fichier du restaurant n'existe pas.");
                         }
                     } else {
-                        System.out.println("No restaurants found.");
+                        System.out.println("Aucun restaurant trouvé.");
                     }
                 } else {
-                    System.out.println("Data directory does not exist.");
+                    System.out.println("Le répertoire de données n'existe pas.");
                 }
                 break;
             case 4:
@@ -130,16 +130,16 @@ public class EmployeMenu {
                 if (dataDirectory3.exists() && dataDirectory3.isDirectory()) {
                     String[] restaurantDirectories = dataDirectory3.list();
                     if (restaurantDirectories != null && restaurantDirectories.length > 0) {
-                        System.out.println("List of restaurants:");
+                        System.out.println("Liste des restaurants :");
                         for (String restaurantName : restaurantDirectories) {
                             System.out.println(restaurantName);
                         }
 
-                        System.out.println("Enter the name of the restaurant you want to display an employe from:");
+                        System.out.println("Entrez le nom du restaurant dont vous voulez afficher un employé :");
                         String restaurantName = scanner.next();
                         File restaurantFile2 = new File("data/" + restaurantName + "/" + restaurantName + ".txt");
                         if (restaurantFile2.exists() && restaurantFile2.isFile()) {
-                            System.out.println("Enter the last name of the employe you want to display:");
+                            System.out.println("Entrez le nom de famille de l'employé que vous voulez afficher :");
                             String lastName = scanner.next();
                             File employeFile = new File("data/" + restaurantName + "/" + "employes" + "/" + lastName + ".txt");
                             if (employeFile.exists() && employeFile.isFile()) {
@@ -151,26 +151,26 @@ public class EmployeMenu {
                                     }
                                     myReader.close();
                                 } catch (IOException e) {
-                                    System.out.println("An error occurred.");
+                                    System.out.println("Une erreur est survenue.");
                                     e.printStackTrace();
                                 }
                             } else {
-                                System.out.println("Employe file does not exist.");
+                                System.out.println("Le fichier de l'employé n'existe pas.");
                             }
                         } else {
-                            System.out.println("Restaurant file does not exist.");
+                            System.out.println("Le fichier du restaurant n'existe pas.");
                         }
                     } else {
-                        System.out.println("No restaurants found.");
+                        System.out.println("Aucun restaurant trouvé.");
                     }
                 } else {
-                    System.out.println("Data directory does not exist.");
+                    System.out.println("Le répertoire de données n'existe pas.");
                 }
                 break;
             case 5:
                 break;
             default:
-                System.out.println("Invalid choice");
+                System.out.println("Choix invalide");
         }
     }
 }

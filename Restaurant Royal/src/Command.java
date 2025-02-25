@@ -12,10 +12,8 @@ public class Command {
     }
 
     public String commandToString(){
-        return "Command [numberCommand = " + numberCommand + "plats = " + plats + "amount =" + amount + "]";
+        return "Commande [numéroCommande = " + numberCommand + ", plats = " + plats + ", montant = " + amount + "]";
     }
-
-    
 
     public void addPlat(Dish dish) {
         plats.add(dish);
@@ -32,16 +30,15 @@ public class Command {
     }
 
     public void displayCommand() {
-        System.out.println("Commande number : " + numberCommand);
+        System.out.println("Numéro de commande : " + numberCommand);
         for (Dish dish : plats) {
             
         }
         calculateAmount();
-        System.out.println("Total amount : " + amount);
-
+        System.out.println("Montant total : " + amount);
     }
 
     public String CommandToString() {
-        return "Command [numberCommand=" + numberCommand + ", dish=" + plats + ", amount=" + amount + "]";
+        return "Commande [numéroCommande=" + numberCommand + ", plats=" + plats + ", montant=" + amount + "]";
     }
 }

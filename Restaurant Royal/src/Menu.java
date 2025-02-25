@@ -1,44 +1,41 @@
-
 import java.util.ArrayList;
 
-public class Menu{
-   protected int id;
-   String menuName;
-   String creationDate;
-   String menuType;
-   ArrayList<Dish> platAvaibility;
+public class Menu {
+    protected int id;
+    String menuName;
+    String creationDate;
+    String menuType;
+    ArrayList<Dish> platAvaibility;
 
-  public Menu (int id, String menuName, String creationDate, String menuType, ArrayList<Dish> platAvaibility){
+    public Menu(int id, String menuName, String creationDate, String menuType, ArrayList<Dish> platAvaibility) {
+        this.id = id;
         this.menuName = menuName;
         this.creationDate = creationDate;
         this.menuType = menuType;
         this.platAvaibility = platAvaibility;
-
-  }
-
-   public String MenuToString( int id, String menuName, String creationDate, String menuType, ArrayList<Dish> platAvaibility) {
-      return "Menu [id=" + id + ", menuName=" + menuName + ", creationDate=" + creationDate + ", menuType=" + menuType + ", platAvaibility=" + platAvaibility + "]";
-   }
-   
-   public void addPlat(Dish dish) {
-    platAvaibility.add(dish);
-   }
-
-   public void removePlat(Dish dish) {
-    platAvaibility.remove(dish);
-   }
-
-   public void displayMenu() {
-    System.out.println("Menu number : " + id);
-    System.out.println("Name of the menu : " + menuName);
-    System.out.println("Creation date : " + creationDate);
-    System.out.println("Type of menu : " + menuType);
-   }
-
-   public void findPlatByName(String Name) {
-    for (Dish dish : platAvaibility) {
     }
 
-   }
+    public String MenuToString(int id, String menuName, String creationDate, String menuType, ArrayList<Dish> platAvaibility) {
+        return "Menu [id=" + id + ", nom du menu=" + menuName + ", date de création=" + creationDate + ", type de menu=" + menuType + ", disponibilité des plats=" + platAvaibility + "]";
+    }
 
+    public void addPlat(Dish dish) {
+        platAvaibility.add(dish);
+    }
+
+    public void removePlat(Dish dish) {
+        platAvaibility.remove(dish);
+    }
+
+    public void displayMenu() {
+        System.out.println("Numéro du menu : " + id);
+        System.out.println("Nom du menu : " + menuName);
+        System.out.println("Date de création : " + creationDate);
+        System.out.println("Type de menu : " + menuType);
+    }
+
+    public void findPlatByName(String name) {
+        for (Dish dish : platAvaibility) {
+        }
+    }
 }
