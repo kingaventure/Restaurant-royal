@@ -16,7 +16,7 @@ public class Menu {
     }
 
     public String MenuToString(int id, String menuName, String creationDate, String menuType, ArrayList<Dish> platAvaibility) {
-        return "Menu [id=" + id + ", nom du menu=" + menuName + ", date de création=" + creationDate + ", type de menu=" + menuType + ", disponibilité des plats=" + platAvaibility + "]";
+        return "Id du menu : " + id + "\nNom du menu : " + menuName + "\nDate de création : " + creationDate + "\nType de menu : " + menuType;
     }
 
     public void addPlat(Dish dish) {

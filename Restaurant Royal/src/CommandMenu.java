@@ -1,11 +1,14 @@
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
 import java.util.Scanner;
 
 public class CommandMenu {
 
-    private Scanner scanner;
+    private final Scanner scanner;
 
     public CommandMenu(Scanner scanner) {
         this.scanner = scanner;
@@ -13,7 +16,7 @@ public class CommandMenu {
 
     public void displayMenu() {
         switch (scanner.nextInt()) {
-            case 1:
+            case 1 -> {
                 File folder = new File("data");
                 File[] listOfFiles = folder.listFiles();
                 System.out.println("Voici la liste de tous les restaurants :");
@@ -37,8 +40,8 @@ public class CommandMenu {
                         System.out.println(fileName);
                     }
                 }
-                break;
-            case 2:
+            }
+            case 2 -> {
                 File dataDirectory = new File("data");
                 if (dataDirectory.exists() && dataDirectory.isDirectory()) {
                     String[] restaurantDirectories = dataDirectory.list();
@@ -62,15 +65,16 @@ public class CommandMenu {
                             Command command = new Command(numberCommand, commandTotalPrice);
                             String commandString = command.CommandToString();
                             try {
-                                FileWriter myWriter = new FileWriter("data/" + restaurantName + "/" + "commands" + "/" + numberCommand + ".txt");
-                                myWriter.write(commandString);
-                                myWriter.close();
+                                try (FileWriter myWriter = new FileWriter("data/" + restaurantName + "/" + "commands" + "/" + numberCommand + ".txt")) {
+                                    myWriter.write(commandString);
+                                }
                                 System.out.println("Écriture réussie dans le fichier.");
                             } catch (IOException e) {
                                 System.out.println("Une erreur est survenue.");
                                 e.printStackTrace();
                             }
                             System.out.println("Commande " + numberCommand + " ajoutée avec succès au restaurant " + restaurantName);
+                            updateCommand(restaurantName, commandString);
                         } else {
                             System.out.println("Le fichier du restaurant n'existe pas.");
                         }
@@ -80,8 +84,8 @@ public class CommandMenu {
                 } else {
                     System.out.println("Le répertoire de données n'existe pas.");
                 }
-                break;
-            case 3:
+            }
+            case 3 -> {
                 File dataDirectory2 = new File("data");
                 if (dataDirectory2.exists() && dataDirectory2.isDirectory()) {
                     String[] restaurantDirectories = dataDirectory2.list();
@@ -113,8 +117,8 @@ public class CommandMenu {
                 } else {
                     System.out.println("Le répertoire de données n'existe pas.");
                 }
-                break;
-            case 4:
+            }
+            case 4 -> {
                 File dataDirectory3 = new File("data");
                 if (dataDirectory3.exists() && dataDirectory3.isDirectory()) {
                     String[] restaurantDirectories = dataDirectory3.list();
@@ -155,11 +159,35 @@ public class CommandMenu {
                 } else {
                     System.out.println("Le répertoire de données n'existe pas.");
                 }
-                break;
-            case 5:
-                break;
-            default:
-                System.out.println("Choix invalide");
+            }
+            case 5 -> {
+            }
+            default -> System.out.println("Choix invalide");
+        }
+    }
+
+        public void updateCommand(String name, String commandName) {
+        String filePath = "data/" + name + "/" + name + ".txt";
+        try {
+            List<String> lines = Files.readAllLines(Paths.get(filePath));
+            boolean commandLineFound = false;
+            
+            for (int i = 0; i < lines.size(); i++) {
+                if (lines.get(i).startsWith("Commmande:")) {
+                    lines.set(i, lines.get(i) + ", " + commandName);
+                    commandLineFound = true;
+                    break;
+                }
+            }
+            
+            if (!commandLineFound) {
+                lines.add("Commandes: " + commandName);
+            }
+            
+            Files.write(Paths.get(filePath), lines);
+        } catch (IOException e) {
+            System.out.println("Une erreur est survenue.");
+            e.printStackTrace();
         }
     }
 }

@@ -1,6 +1,9 @@
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
 import java.util.Scanner;
 
 public class EmployeMenu {
@@ -10,6 +13,8 @@ public class EmployeMenu {
     public EmployeMenu(Scanner scanner) {
         this.scanner = scanner;
     }
+
+    
 
     public void displayMenu() {
         switch (scanner.nextInt()) {
@@ -26,17 +31,17 @@ public class EmployeMenu {
                 System.out.println("Entrez le nom du restaurant dont vous voulez afficher tous les employés : ");
                 String name = scanner.next();
                 File restaurantDirectory = new File("data/" + name + "/employes/");
-                File[] listOfFiles2 = restaurantDirectory.listFiles();
-                System.out.println("Voici la liste de tous les employés :");
-                for (File file : listOfFiles2) {
-                    if (file.isFile()) {
-                        String fileName = file.getName();
-                        if (fileName.endsWith(".txt")) {
-                            fileName = fileName.substring(0, fileName.length() - 4);
+                    File[] listOfFiles2 = restaurantDirectory.listFiles();
+                    System.out.println("Voici la liste de tous les employés :");
+                    for (File file : listOfFiles2) {
+                        if (file.isFile()) {
+                            String fileName = file.getName();
+                            if (fileName.endsWith(".txt")) {
+                                fileName = fileName.substring(0, fileName.length() - 4);
+                            }
+                            System.out.println(fileName);
                         }
-                        System.out.println(fileName);
                     }
-                }
                 break;
             case 2:
                 File dataDirectory = new File("data");
@@ -77,6 +82,7 @@ public class EmployeMenu {
                                 myWriter.write(employeString);
                                 myWriter.close();
                                 System.out.println("Écriture réussie dans le fichier.");
+                                updateEmploye(restaurantName, lastName);
                             } catch (IOException e) {
                                 System.out.println("Une erreur est survenue.");
                                 e.printStackTrace();
@@ -106,9 +112,21 @@ public class EmployeMenu {
                         String restaurantName = scanner.next();
                         File restaurantFile2 = new File("data/" + restaurantName + "/" + restaurantName + ".txt");
                         if (restaurantFile2.exists() && restaurantFile2.isFile()) {
+                            File restaurantDirectory2 = new File("data/" + restaurantName + "/employes/");
+                            File[] listOfFiles3 = restaurantDirectory2.listFiles();
+                            System.out.println("Voici la liste de tous les employés :");
+                            for (File file : listOfFiles3) {
+                                if (file.isFile()) {
+                                    String fileName = file.getName();
+                                    if (fileName.endsWith(".txt")) {
+                                        fileName = fileName.substring(0, fileName.length() - 4);
+                                    }
+                                    System.out.println(fileName);
+                                }
+                            }
                             System.out.println("Entrez le nom de famille de l'employé que vous voulez supprimer :");
                             String lastName = scanner.next();
-                            File employeFile = new File("data/" + restaurantName + "/" + lastName + ".txt");
+                            File employeFile = new File("data/" + restaurantName + "/employes/" + lastName + ".txt");
                             if (employeFile.exists() && employeFile.isFile()) {
                                 employeFile.delete();
                                 System.out.println("Employé " + lastName + " supprimé avec succès du restaurant " + restaurantName);
@@ -139,6 +157,19 @@ public class EmployeMenu {
                         String restaurantName = scanner.next();
                         File restaurantFile2 = new File("data/" + restaurantName + "/" + restaurantName + ".txt");
                         if (restaurantFile2.exists() && restaurantFile2.isFile()) {
+
+                            File restaurantDirectory2 = new File("data/" + restaurantName + "/employes/");
+                            File[] listOfFiles3 = restaurantDirectory2.listFiles();
+                            System.out.println("Voici la liste de tous les employés :");
+                            for (File file : listOfFiles3) {
+                                if (file.isFile()) {
+                                    String fileName = file.getName();
+                                    if (fileName.endsWith(".txt")) {
+                                        fileName = fileName.substring(0, fileName.length() - 4);
+                                    }
+                                    System.out.println(fileName);
+                                }
+                            }
                             System.out.println("Entrez le nom de famille de l'employé que vous voulez afficher :");
                             String lastName = scanner.next();
                             File employeFile = new File("data/" + restaurantName + "/" + "employes" + "/" + lastName + ".txt");
@@ -173,4 +204,29 @@ public class EmployeMenu {
                 System.out.println("Choix invalide");
         }
     }
+    
+    public void updateEmploye(String name, String employeName) {
+    String filePath = "data/" + name + "/" + name + ".txt";
+    try {
+        List<String> lines = Files.readAllLines(Paths.get(filePath));
+        boolean employeLineFound = false;
+        
+        for (int i = 0; i < lines.size(); i++) {
+            if (lines.get(i).startsWith("Employée:")) {
+                lines.set(i, lines.get(i) + ", " + employeName);
+                employeLineFound = true;
+                break;
+            }
+        }
+        
+        if (!employeLineFound) {
+            lines.add("Employée: " + employeName);
+        }
+        
+        Files.write(Paths.get(filePath), lines);
+    } catch (IOException e) {
+        System.out.println("Une erreur est survenue.");
+        e.printStackTrace();
+    }
+}
 }

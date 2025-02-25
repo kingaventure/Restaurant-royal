@@ -23,21 +23,6 @@ public class RestaurantMenu {
                         System.out.println(file.getName());
                     }
                 }
-
-                System.out.println("Ecrivez le nom du restaurant que vous voulez afficher: ");
-                String name = scanner.next();
-                File restaurantFile = new File("data/" + name + "/" + name + ".txt");
-                try {
-                    Scanner myReader = new Scanner(restaurantFile);
-                    while (myReader.hasNextLine()) {
-                        String data = myReader.nextLine();
-                        System.out.println(data);
-                    }
-                    myReader.close();
-                } catch (IOException e) {
-                    System.out.println("Une erreur c'est produite.");
-                    e.printStackTrace();
-                }
                 break;
             case 2:
                 scanner.nextLine();

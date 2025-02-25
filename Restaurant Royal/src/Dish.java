@@ -30,7 +30,7 @@ public class Dish {
      }
  
      public String DishToString(int id, boolean avaibility, String name, String description, double price, int calories, String category, String servingSize, String dateOfAdding, String cuisineType, String cookTime, double specialPrice, String imageURL) {
-         return "Plat [id = " + id + ", nom=" + name + ", description=" + description + ", prix=" + price + ", calories=" + calories + ", catégorie=" + category + ", taille de portion=" + servingSize + ", date d'ajout=" + dateOfAdding + ", type de cuisine=" + cuisineType + ", temps de cuisson=" + cookTime + ", prix spécial=" + specialPrice + ", URL de l'image=" + imageURL + ", disponibilité=" + avaibility + "]";
+         return "Id du plat : " + id + "\nDisponibilité : " + avaibility + "\nNom du plat : " + name + "\nDescription : " + description + "\nPrix : " + price + "\nCalories : " + calories + "\nCatégorie : " + category + "\nTaille de la portion : " + servingSize + "\nDate d'ajout : " + dateOfAdding + "\nType de cuisine : " + cuisineType + "\nTemps de cuisson : " + cookTime + "\nPrix spécial : " + specialPrice + "\nURL de l'image : " + imageURL;
      }
  
      public String getName() {
@@ -72,4 +72,12 @@ public class Dish {
      public void setCategory(String category) {
          this.category = category;
      }
+
+     public int getId() {
+         return this.id;
+     }
+
+        public void setId(int id) {
+            this.id = id;
+        }
  }

@@ -1,0 +1,5 @@
+Id du menu : 1
+Nom du menu : ttt
+Date de création : 25/02/2025
+Type de menu : t
+Plats : tg

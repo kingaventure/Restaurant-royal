@@ -1,9 +1,12 @@
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class MenuMenu {
@@ -83,6 +86,7 @@ public class MenuMenu {
                                 e.printStackTrace();
                             }
                             System.out.println("Le menu " + menuName + " est ajouté au restaurant : " + restaurantName);
+                            updateMenu(restaurantName, menuName);
                         } else {
                             System.out.println("Le fichier du restaurant n'existe pas.");
                         }
@@ -174,4 +178,29 @@ public class MenuMenu {
                 System.out.println("Choix invalide");
         }
     }
+
+    public void updateMenu(String name, String menuName) {
+    String filePath = "data/" + name + "/" + name + ".txt";
+    try {
+        List<String> lines = Files.readAllLines(Paths.get(filePath));
+        boolean menuLineFound = false;
+        
+        for (int i = 0; i < lines.size(); i++) {
+            if (lines.get(i).startsWith("Menus:")) {
+                lines.set(i, lines.get(i) + ", " + menuName);
+                menuLineFound = true;
+                break;
+            }
+        }
+        
+        if (!menuLineFound) {
+            lines.add("Menus : " + menuName);
+        }
+        
+        Files.write(Paths.get(filePath), lines);
+    } catch (IOException e) {
+        System.out.println("Une erreur est survenue.");
+        e.printStackTrace();
+    }
+}
 }

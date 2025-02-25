@@ -16,7 +16,7 @@ public class Employe {
     }
 
     public String EmployeToString(int id, String lastName, String firstName, String role, String employmentDate, int salary) {
-        return "Employé [idEmployé=" + id + ", nom=" + lastName + ", prénom=" + firstName + ", rôle=" + role + ", date d'embauche=" + employmentDate + ", salaire=" + salary + "]";
+        return "Id : " + id + "\nNom : " + lastName + "\nPrénom : " + firstName + "\nRôle : " + role + "\nDate d'embauche : " + employmentDate + "\nSalaire : " + salary;
     }
 
     public int getIdEmploye() {

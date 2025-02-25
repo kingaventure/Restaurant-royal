@@ -1,6 +1,9 @@
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
 import java.util.Scanner;
 
 public class DishMenu {
@@ -128,6 +131,7 @@ public class DishMenu {
                                 e.printStackTrace();
                             }
                             System.out.println("Plat " + dishName + " ajouté avec succès au restaurant " + restaurantName);
+                            updateDish(restaurantName, dishName, menuName1);
                         } else {
                             System.out.println("Le fichier du restaurant n'existe pas.");
                         }
@@ -245,4 +249,30 @@ public class DishMenu {
                 System.out.println("Choix invalide");
         }
     }
+
+    public void updateDish(String name, String dishName, String menuName) {
+    String filePath = "data/" + name + "/menus/" + menuName + "/" + menuName + ".txt";
+    try {
+        List<String> lines = Files.readAllLines(Paths.get(filePath));
+        boolean dishLineFound = false;
+        
+        for (int i = 0; i < lines.size(); i++) {
+            if (lines.get(i).startsWith("Plats:")) {
+                lines.set(i, lines.get(i) + ", " + dishName);
+                dishLineFound = true;
+                break;
+            }
+        }
+        
+        if (!dishLineFound) {
+            lines.add("Plats : " + dishName);
+        }
+        
+        Files.write(Paths.get(filePath), lines);
+    } catch (IOException e) {
+        System.out.println("Une erreur est survenue.");
+        e.printStackTrace();
+    }
+}
+
 }

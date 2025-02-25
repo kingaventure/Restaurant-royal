@@ -31,9 +31,6 @@ public class Command {
 
     public void displayCommand() {
         System.out.println("Numéro de commande : " + numberCommand);
-        for (Dish dish : plats) {
-            
-        }
         calculateAmount();
         System.out.println("Montant total : " + amount);
     }

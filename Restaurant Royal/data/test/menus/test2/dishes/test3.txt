@@ -1,1 +1,0 @@
-Plat [id = 1name=test3, description=test, price=2.0, calories=2, category=test, servingSize=2, dateOfAdding=2, cuisineType=test, cookTime=2, specialPrice=2.0, imageURL=test, avaibility=true]
