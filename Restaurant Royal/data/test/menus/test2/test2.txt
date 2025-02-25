@@ -1,0 +1,1 @@
+Menu [id=1, menuName=test2, creationDate=25/02/2025, menuType=test, platAvaibility=[]]

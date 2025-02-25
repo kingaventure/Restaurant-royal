@@ -1,0 +1,1 @@
+Restaurant [id=1, nameRestaurant=test, address=test, menus=[], commands=[], employes=[]]
