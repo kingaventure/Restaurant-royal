@@ -1,5 +1,0 @@
-Nom du restaurant : t
-Adresse : tland
-Id : 1
-Employée: tr, yt, hy
-Menus : ttt

@@ -1,0 +1,6 @@
+Nom du restaurant : tres
+Adresse : tr
+Id : 1
+Menus : ght
+Commandes: 1
+Total des recettes (en euros): 200

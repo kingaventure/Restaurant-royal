@@ -29,11 +29,6 @@ public class Restaurant {
         commands.remove(command);
     }
 
-    public void displayCommand() {
-        for (Command command : commands) {
-            command.displayCommand();
-        }
-    }
 
     public void addEmploye(Employe employe) {
         employes.add(employe);

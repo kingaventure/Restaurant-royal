@@ -1,6 +1,0 @@
-Id : 2
-Nom : yt
-Prénom : yt
-Rôle : ty
-Date d'embauche : 2
-Salaire : 2

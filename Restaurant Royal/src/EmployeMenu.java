@@ -82,7 +82,7 @@ public class EmployeMenu {
                                 myWriter.write(employeString);
                                 myWriter.close();
                                 System.out.println("Écriture réussie dans le fichier.");
-                                updateEmploye(restaurantName, lastName);
+                                updateEmploye(restaurantName, lastName, salary);
                             } catch (IOException e) {
                                 System.out.println("Une erreur est survenue.");
                                 e.printStackTrace();
@@ -205,28 +205,39 @@ public class EmployeMenu {
         }
     }
     
-    public void updateEmploye(String name, String employeName) {
-    String filePath = "data/" + name + "/" + name + ".txt";
-    try {
-        List<String> lines = Files.readAllLines(Paths.get(filePath));
-        boolean employeLineFound = false;
-        
-        for (int i = 0; i < lines.size(); i++) {
-            if (lines.get(i).startsWith("Employée:")) {
-                lines.set(i, lines.get(i) + ", " + employeName);
-                employeLineFound = true;
-                break;
+    public void updateEmploye(String name, String employeName, int salary) {
+        String filePath = "data/" + name + "/" + name + ".txt";
+        try {
+            List<String> lines = Files.readAllLines(Paths.get(filePath));
+            boolean employeLineFound = false;
+            boolean totalSalaryLineFound = false;
+            int totalSalary = 0;
+    
+            for (int i = 0; i < lines.size(); i++) {
+                if (lines.get(i).startsWith("Employée: ")) {
+                    lines.set(i, lines.get(i) + (lines.get(i).endsWith(":") ? " " : ", ") + employeName);
+                    employeLineFound = true;
+                }
+                if (lines.get(i).startsWith("Total des salaires (en euros): ")) {
+                    totalSalary = Integer.parseInt(lines.get(i).split(":")[1].trim());
+                    totalSalary += salary;
+                    lines.set(i, "Total des salaires (en euros): " + totalSalary);
+                    totalSalaryLineFound = true;
+                }
             }
+    
+            if (!employeLineFound) {
+                lines.add("Employée: " + employeName);
+            }
+            
+            if (!totalSalaryLineFound) {
+                lines.add("Total des salaires (en euros): " + salary );
+            }
+    
+            Files.write(Paths.get(filePath), lines);
+        } catch (IOException e) {
+            System.out.println("Une erreur est survenue.");
+            e.printStackTrace();
         }
-        
-        if (!employeLineFound) {
-            lines.add("Employée: " + employeName);
-        }
-        
-        Files.write(Paths.get(filePath), lines);
-    } catch (IOException e) {
-        System.out.println("Une erreur est survenue.");
-        e.printStackTrace();
     }
-}
 }

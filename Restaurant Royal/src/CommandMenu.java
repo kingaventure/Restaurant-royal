@@ -56,14 +56,41 @@ public class CommandMenu {
                         scanner.nextLine();
                         File restaurantFile2 = new File("data/" + restaurantName + "/" + restaurantName + ".txt");
                         if (restaurantFile2.exists() && restaurantFile2.isFile()) {
+                            File restaurantDirectory2 = new File("data/" + restaurantName + "/menus");
+                            File[] listOfFiles3 = restaurantDirectory2.listFiles();
+                            System.out.println("Voici la liste de tous les menus :");
+                            for (File file : listOfFiles3) {
+                                if (file.isDirectory()) {
+                                    System.out.println(file.getName());
+                                }
+                            }
+                            System.out.println("Entrez le menu auquel vous voulez prendre un plat dans la commande :");
+                            String menuName = scanner.next();
+                            scanner.nextLine();
+                            File restaurantDirectory = new File("data/" + restaurantName + "/menus/" + menuName + "/dishes");
+                            File[] listOfFiles2 = restaurantDirectory.listFiles();
+                            System.out.println("Voici la liste de tous les plats :");
+                            for (File file : listOfFiles2) {
+                                if (file.isFile()) {
+                                    String fileName = file.getName();
+                                    if (fileName.endsWith(".txt")) {
+                                        fileName = fileName.substring(0, fileName.length() - 4);
+                                    }
+                                    System.out.println(fileName);
+                                }
+                             }
+                             
+                            System.out.println("Entrez le nom du plat que vous voulez ajouter à la commande :");
+                            String selectedDish = scanner.next();
+                            scanner.nextLine();
                             System.out.println("Entrez l'identifiant de la commande :");
                             int numberCommand = scanner.nextInt();
                             scanner.nextLine();
                             System.out.println("Entrez le prix total de la commande :");
-                            double commandTotalPrice = scanner.nextDouble();
+                            int commandTotalPrice = scanner.nextInt();
                             scanner.nextLine();
                             Command command = new Command(numberCommand, commandTotalPrice);
-                            String commandString = command.CommandToString();
+                            String commandString = command.commandToString( numberCommand, commandTotalPrice);
                             try {
                                 try (FileWriter myWriter = new FileWriter("data/" + restaurantName + "/" + "commands" + "/" + numberCommand + ".txt")) {
                                     myWriter.write(commandString);
@@ -74,7 +101,7 @@ public class CommandMenu {
                                 e.printStackTrace();
                             }
                             System.out.println("Commande " + numberCommand + " ajoutée avec succès au restaurant " + restaurantName);
-                            updateCommand(restaurantName, commandString);
+                            updateCommand(restaurantName, numberCommand, commandTotalPrice, selectedDish, menuName);
                         } else {
                             System.out.println("Le fichier du restaurant n'existe pas.");
                         }
@@ -166,24 +193,57 @@ public class CommandMenu {
         }
     }
 
-        public void updateCommand(String name, String commandName) {
+    public void updateCommand(String name, int commandName, int price, String selectedDish, String menuName) {
         String filePath = "data/" + name + "/" + name + ".txt";
+        String fileDishPath = "data/" + name + "/commands/" + commandName + ".txt";
+        try {
+            List<String> lines = Files.readAllLines(Paths.get(fileDishPath));
+            boolean dishLineFound = false;
+    
+            for (int i = 0; i < lines.size(); i++) {
+                if (lines.get(i).startsWith("Plats: ")) {
+                    lines.set(i, lines.get(i) + (lines.get(i).endsWith(":") ? " " : ", ") + selectedDish);
+                    dishLineFound = true;
+                }
+
+                
+            }
+            if(!dishLineFound) {
+                lines.add("Plats: " + selectedDish);
+            }
+            Files.write(Paths.get(fileDishPath), lines);
+        } catch (IOException e) {
+            System.out.println("Une erreur est survenue.");
+            e.printStackTrace();
+        }
+
         try {
             List<String> lines = Files.readAllLines(Paths.get(filePath));
             boolean commandLineFound = false;
-            
+            boolean totalPriceLineFound = false;
+            int totalPrice = 0;
+    
             for (int i = 0; i < lines.size(); i++) {
-                if (lines.get(i).startsWith("Commmande:")) {
-                    lines.set(i, lines.get(i) + ", " + commandName);
+                if (lines.get(i).startsWith("Commandes: ")) {
+                    lines.set(i, lines.get(i) + (lines.get(i).endsWith(":") ? " " : ", ") + commandName);
                     commandLineFound = true;
-                    break;
+                }
+                if (lines.get(i).startsWith("Total des recettes (en euros): ")) {
+                    totalPrice = Integer.parseInt(lines.get(i).split(":")[1].trim());
+                    totalPrice += price;
+                    lines.set(i, "Total des recettes (en euros): " + totalPrice);
+                    totalPriceLineFound = true;
                 }
             }
-            
+    
             if (!commandLineFound) {
                 lines.add("Commandes: " + commandName);
             }
             
+            if (!totalPriceLineFound) {
+                lines.add("Total des recettes (en euros): " + price);
+            }
+    
             Files.write(Paths.get(filePath), lines);
         } catch (IOException e) {
             System.out.println("Une erreur est survenue.");

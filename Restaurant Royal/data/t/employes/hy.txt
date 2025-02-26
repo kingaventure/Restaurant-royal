@@ -1,6 +1,0 @@
-Id : 3
-Nom : hy
-Prénom : hy
-Rôle : hy
-Date d'embauche : 2
-Salaire : 2
