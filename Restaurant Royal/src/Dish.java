@@ -2,18 +2,18 @@ public class Dish {
     int id;
     public String name;
     public String description;
-    public double price;
+    public int price;
     public int calories;
     public String category;
     public String servingSize;
     protected String dateOfAdding;
     public String cuisineType;
     protected String cookTime;
-    protected double specialPrice;
+    protected int specialPrice;
     public String imageURL;
     public boolean avaibility;
  
-     public Dish(int id, boolean avaibility, String name, String description, double price, int calories, String category, String servingSize, String dateOfAdding, String cuisineType, String cookTime, double specialPrice, String imageURL) {
+     public Dish(int id, boolean avaibility, String name, String description, int price, int calories, String category, String servingSize, String dateOfAdding, String cuisineType, String cookTime, int specialPrice, String imageURL) {
          this.name = name;
          this.id = id;
          this.description = description;
@@ -29,7 +29,7 @@ public class Dish {
          this.avaibility = avaibility;
      }
  
-     public String DishToString(int id, boolean avaibility, String name, String description, double price, int calories, String category, String servingSize, String dateOfAdding, String cuisineType, String cookTime, double specialPrice, String imageURL) {
+     public String DishToString(int id, boolean avaibility, String name, String description, int price, int calories, String category, String servingSize, String dateOfAdding, String cuisineType, String cookTime, int specialPrice, String imageURL) {
          return "Id du plat : " + id + "\nDisponibilité : " + avaibility + "\nNom du plat : " + name + "\nDescription : " + description + "\nPrix : " + price + "\nCalories : " + calories + "\nCatégorie : " + category + "\nTaille de la portion : " + servingSize + "\nDate d'ajout : " + dateOfAdding + "\nType de cuisine : " + cuisineType + "\nTemps de cuisson : " + cookTime + "\nPrix spécial : " + specialPrice + "\nURL de l'image : " + imageURL;
      }
  
@@ -49,11 +49,11 @@ public class Dish {
          this.description = description;
      }
  
-     public double getPrice() {
+     public int getPrice() {
          return this.price;
      }
  
-     public void setPrice(double price) {
+     public void setPrice(int price) {
          this.price = price;
      }
  

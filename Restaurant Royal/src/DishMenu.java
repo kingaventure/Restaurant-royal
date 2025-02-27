@@ -17,6 +17,8 @@ public class DishMenu {
     public void displayMenu() {
         switch (scanner.nextInt()) {
             case 1:
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
                 File folder = new File("data");
                 File[] listOfFiles = folder.listFiles();
                 System.out.println("Voici la liste de tous les restaurants :");
@@ -53,6 +55,8 @@ public class DishMenu {
                 }
                 break;
             case 2:
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
                 File dataDirectory = new File("data");
                 if (dataDirectory.exists() && dataDirectory.isDirectory()) {
                     String[] restaurantDirectories = dataDirectory.list();
@@ -90,7 +94,7 @@ public class DishMenu {
                             String description = scanner.next();
                             scanner.nextLine();
                             System.out.println("Entrez le prix du plat :");
-                            double price = scanner.nextDouble();
+                            int price = scanner.nextInt();
                             scanner.nextLine();
                             System.out.println("Entrez les calories du plat :");
                             int calories = scanner.nextInt();
@@ -111,7 +115,7 @@ public class DishMenu {
                             String cookTime = scanner.next();
                             scanner.nextLine();
                             System.out.println("Entrez le prix spécial du plat :");
-                            double specialPrice = scanner.nextDouble();
+                            int specialPrice = scanner.nextInt();
                             scanner.nextLine();
                             System.out.println("Entrez l'URL de l'image du plat :");
                             String imageURL = scanner.next();
@@ -143,6 +147,8 @@ public class DishMenu {
                 }
                 break;
             case 3:
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
                 File dataDirectory2 = new File("data");
                 if (dataDirectory2.exists() && dataDirectory2.isDirectory()) {
                     String[] restaurantDirectories = dataDirectory2.list();
@@ -189,6 +195,8 @@ public class DishMenu {
                 }
                 break;
             case 4:
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
                 File dataDirectory3 = new File("data");
                 if (dataDirectory3.exists() && dataDirectory3.isDirectory()) {
                     String[] restaurantDirectories = dataDirectory3.list();
@@ -257,7 +265,7 @@ public class DishMenu {
         boolean dishLineFound = false;
         
         for (int i = 0; i < lines.size(); i++) {
-            if (lines.get(i).startsWith("Plats:")) {
+            if (lines.get(i).startsWith("Plats : ")) {
                 lines.set(i, lines.get(i) + ", " + dishName);
                 dishLineFound = true;
                 break;

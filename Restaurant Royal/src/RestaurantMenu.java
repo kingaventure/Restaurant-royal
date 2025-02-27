@@ -14,6 +14,8 @@ public class RestaurantMenu {
     public void displayMenu() {
         switch (scanner.nextInt()) {
             case 1:
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
                 scanner.nextLine();
                 File folder = new File("data");
                 File[] listOfFiles = folder.listFiles();
@@ -25,6 +27,8 @@ public class RestaurantMenu {
                 }
                 break;
             case 2:
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
                 scanner.nextLine();
                 System.out.println("Choissiez un id : ");
                 int id = scanner.nextInt();
@@ -69,6 +73,8 @@ public class RestaurantMenu {
                 }
                 break;
             case 3:
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
                 File folder2 = new File("data");
                 File[] listOfFiles2 = folder2.listFiles();
                 System.out.println("Voici une liste des restaurants :");
@@ -85,6 +91,8 @@ public class RestaurantMenu {
                 System.out.println("Restaurant " + name3 + " supprimé avec succès");
                 break;
             case 4:
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
                 File folder3 = new File("data");
                 File[] listOfFiles3 = folder3.listFiles();
                 System.out.println("Voici une liste des restaurants :");

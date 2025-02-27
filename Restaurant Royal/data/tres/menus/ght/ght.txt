@@ -1,5 +1,0 @@
-Id du menu : 1
-Nom du menu : ght
-Date de création : 26/02/2025
-Type de menu : f
-Plats : tresee

@@ -86,9 +86,7 @@ public class CommandMenu {
                             System.out.println("Entrez l'identifiant de la commande :");
                             int numberCommand = scanner.nextInt();
                             scanner.nextLine();
-                            System.out.println("Entrez le prix total de la commande :");
-                            int commandTotalPrice = scanner.nextInt();
-                            scanner.nextLine();
+                            int commandTotalPrice = findPrice(selectedDish, menuName, restaurantName);
                             Command command = new Command(numberCommand, commandTotalPrice);
                             String commandString = command.commandToString( numberCommand, commandTotalPrice);
                             try {
@@ -249,5 +247,22 @@ public class CommandMenu {
             System.out.println("Une erreur est survenue.");
             e.printStackTrace();
         }
+    }
+
+    public int findPrice(String plat, String menu, String restaurant) {
+        int price = 0;
+        try {
+            List<String> lines = Files.readAllLines(Paths.get("data/" + restaurant + "/menus/" + menu + "/dishes/" + plat + ".txt"));
+            for (String line : lines) {
+                if (line.startsWith("Prix : ")) {
+                    price = Integer.parseInt(line.split(": ")[1].trim());
+                    break;
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Une erreur est survenue.");
+            e.printStackTrace();
+        }
+        return price;
     }
 }

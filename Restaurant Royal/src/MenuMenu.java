@@ -20,6 +20,8 @@ public class MenuMenu {
     public void displayMenu() {
         switch (scanner.nextInt()) {
             case 1:
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
                 File folder = new File("data");
                 File[] listOfFiles = folder.listFiles();
                 System.out.println("Voici la liste de tous les restaurants :");
@@ -45,6 +47,8 @@ public class MenuMenu {
                 }
                 break;
             case 2:
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
                 File dataDirectory = new File("data");
                 if (dataDirectory.exists() && dataDirectory.isDirectory()) {
                     String[] restaurantDirectories = dataDirectory.list();
@@ -98,6 +102,8 @@ public class MenuMenu {
                 }
                 break;
             case 3:
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
                 File dataDirectory2 = new File("data");
                 if (dataDirectory2.exists() && dataDirectory2.isDirectory()) {
                     String[] restaurantDirectories = dataDirectory2.list();
@@ -131,6 +137,8 @@ public class MenuMenu {
                 }
                 break;
             case 4:
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
                 File dataDirectory3 = new File("data");
                 if (dataDirectory3.exists() && dataDirectory3.isDirectory()) {
                     String[] restaurantDirectories = dataDirectory3.list();

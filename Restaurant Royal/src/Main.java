@@ -18,6 +18,8 @@ public class Main {
         boolean exit = false;
 
         while (!exit) {
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
             System.out.println("Bienvenue à restaurant Royal, voici vos options :");
             System.out.println("1 : Menu Restaurant");
             System.out.println("2 : Menu Employés");
@@ -28,6 +30,8 @@ public class Main {
 
             switch (scanner.nextInt()) {
                 case 1:
+                    System.out.print("\033[H\033[2J");
+                    System.out.flush();
                     System.out.println("Bienvenue dans le menu des restaurants, voici vos options :");
                     System.out.println("1 : Afficher tous les restaurants");
                     System.out.println("2 : Ajouter un restaurant");
@@ -39,6 +43,8 @@ public class Main {
                     restaurantMenu.displayMenu();
                     break;
                 case 2:
+                    System.out.print("\033[H\033[2J");
+                    System.out.flush();
                     System.out.println("Bienvenue dans le menu des employés, voici vos options :");
                     System.out.println("1 : Afficher tous les employés");
                     System.out.println("2 : Ajouter un employé");
@@ -50,6 +56,8 @@ public class Main {
                     employeMenu.displayMenu();
                     break;
                 case 3:
+                    System.out.print("\033[H\033[2J");
+                    System.out.flush();
                     System.out.println("Bienvenue dans le menu des menus, voici vos options :");
                     System.out.println("1 : Afficher tous les menus");
                     System.out.println("2 : Ajouter un menu");
@@ -61,6 +69,8 @@ public class Main {
                     menuMenu.displayMenu();
                     break;
                 case 4:
+                    System.out.print("\033[H\033[2J");
+                    System.out.flush();
                     System.out.println("Bienvenue dans le menu des plats, voici vos options :");
                     System.out.println("1 : Afficher tous les plats");
                     System.out.println("2 : Ajouter un plat");
@@ -72,6 +82,8 @@ public class Main {
                     dishMenu.displayMenu();
                     break;
                 case 5:
+                    System.out.print("\033[H\033[2J");
+                    System.out.flush();
                     System.out.println("Bienvenue dans le menu des commandes, voici vos options :");
                     System.out.println("1 : Afficher toutes les commandes");
                     System.out.println("2 : Ajouter une commande");
