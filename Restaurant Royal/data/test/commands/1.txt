@@ -1,0 +1,3 @@
+Commande numéro : 1 Montant : 20
+Plats: ght, ght, ght, ght
+Total des prix (en euros): 20

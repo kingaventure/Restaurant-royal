@@ -89,7 +89,9 @@ public class Main {
                     System.out.println("2 : Ajouter une commande");
                     System.out.println("3 : Retirer une commande");
                     System.out.println("4 : Afficher les détails d'une commande");
-                    System.out.println("5 : Revenir au menu principal");
+                    System.out.println("5 : Ajouter un plat à une commande");
+                    System.out.println("6 : Retirer un plat d'une commande");
+                    System.out.println("7 : Revenir au menu principal");
 
                     CommandMenu commandMenu = new CommandMenu(scanner);
                     commandMenu.displayMenu();

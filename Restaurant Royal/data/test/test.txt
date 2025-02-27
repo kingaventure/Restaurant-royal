@@ -1,0 +1,6 @@
+Nom du restaurant : test
+Adresse : fdfdg
+Id : 1
+Menus : ret
+Commandes: 1, 1
+Total des recettes (en euros): 80

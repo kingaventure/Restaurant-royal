@@ -1,0 +1,13 @@
+Id du plat : 1
+Disponibilité : true
+Nom du plat : ght
+Description : gg
+Prix : 20
+Calories : 2
+Catégorie : g
+Taille de la portion : 2
+Date d'ajout : 21
+Type de cuisine : g
+Temps de cuisson : 2
+Prix spécial : 1
+URL de l'image : f

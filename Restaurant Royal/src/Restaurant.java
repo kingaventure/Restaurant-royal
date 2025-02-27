@@ -38,12 +38,6 @@ public class Restaurant {
         employes.remove(employe);
     }
 
-    public void displayEmploye() {
-        for (Employe employe : employes) {
-            
-        }
-    }
-
     public void findEmployeByRole(String role) {
         for (Employe employe : employes) {
             if (employe.getRole().equals(role)) {

@@ -34,8 +34,5 @@ public class Menu {
         System.out.println("Type de menu : " + menuType);
     }
 
-    public void findPlatByName(String name) {
-        for (Dish dish : platAvaibility) {
-        }
-    }
+    
 }
